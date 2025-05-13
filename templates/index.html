@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Paper Generator</title>
+    <!-- Add jsPDF for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <!-- Add SheetJS for Excel export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<link rel="stylesheet" href="/static/styles.css">
+<body>
+    <div class="container">
+        <h1>Question Paper Generator</h1>
+        
+        <textarea id="syllabus-input" placeholder="Enter your Syllabus" rows="4"></textarea>
+        
+        <div id="parameters">
+            <h3>Question Parameters</h3>
+            <div class="param-group">
+                <label for="difficulty">Difficulty Level:</label>
+                <select id="difficulty">
+                    <option value="easy">Easy</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+            <div class="param-group">
+                <label for="num-questions">Number of Questions:</label>
+                <input type="number" id="num-questions" min="1" max="20" value="5">
+            </div>
+            <div class="param-group">
+                <label for="question-style">Question Style:</label>
+                <select id="question-style">
+                    <option value="conceptual">Conceptual Understanding</option>
+                    <option value="application">Application Based</option>
+                    <option value="critical">Critical Thinking</option>
+                    <option value="mixed" selected>Mixed</option>
+                </select>
+                <div id="paper-details">
+                    <h3>Paper Details</h3>
+                    <div class="param-group">
+                        <label for="class-input">Class:</label>
+                        <input type="text" id="class-input" value="SE Div-A and B">
+                    </div>
+                    <div class="param-group">
+                        <label for="max-time-input">Max Time (Hours):</label>
+                        <input type="number" id="max-time-input" min="0.5" max="3" step="0.5" value="1">
+                    </div>
+                    <div class="param-group">
+                        <label for="course-name-input">Course Name:</label>
+                        <input type="text" id="course-name-input" value="Computer Graphics">
+                    </div>
+                    <div class="param-group">
+                        <label for="department-input">Department:</label>
+                        <input type="text" id="department-input" value="Information Technology">
+                    </div>
+                </div>
+        </div>
+        
+        <button id="generate-btn">Generate Questions</button>
+        <div id="loading">
+            <div class="spinner"></div>
+            <p>Generating questions based on your syllabus...</p>
+        </div>
+        
+        <table id="question-table">
+            <thead>
+                <tr>
+                    <th style="width: 8%;">SrNo</th>
+                    <th style="width: 65%;">Question</th>
+                    <th style="width: 12%;">Marks</th>
+                    <th style="width: 15%;">BTL</th>
+                </tr>
+            </thead>
+            <tbody id="question-body">
+                <!-- Questions will be added here -->
+            </tbody>
+        </table>
+        
+        <div class="controls">
+            <div>
+                <button id="add-row-btn">Add Row</button>
+                <button id="delete-row-btn">Delete Selected</button>
+                <button id="save-to-db-btn">Save to Database</button>
+            </div>
+            <div>
+                <button id="save-btn">Save as PDF</button>
+                <button id="export-btn">Export to Excel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/main.js"></script>
+</body>
+</html>
